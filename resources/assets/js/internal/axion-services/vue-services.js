@@ -1,15 +1,13 @@
 if(typeof axionService==="undefined")
 	var axionService = require('./axion-services.js');
 
-var tree     = axionService('summary-tree');
-var activity = axionService('');
+var passportService     = axionService('');
 
 const vueServices = {
 	install(Vue, options) {
 		Vue.mixin({
 			services:{
-				tree:tree,
-				activity:activity
+				passportService:passportService
 			}
 	    });
 	}

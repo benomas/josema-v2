@@ -55021,7 +55021,7 @@ var axionService = function axionService(servicePrefix, baseServiceUr) {
 	this.config = {
 		//cross domain baseUrl
 		//baseURL            : 'http://dev.cime/api/',
-		baseURL: '/api/',
+		baseURL: '/',
 		headers: {
 			'X-Requested-With': 'XMLHttpRequest',
 			//'X-CSRF-TOKEN'     : window.Laravel.csrfToken,
@@ -55259,6 +55259,19 @@ Vue.mixin({
 
         if (instance[propertys["target"]] < final) setTimeout(iteration, time);
       }, time);
+    },
+    login: function login(user, password) {
+      axionService('oauth/token').post("", {
+        "client_id": "2",
+        "client_secret": "VO50RCnYqJUsUdGjRRc5oZwTVgvuCSRll4k5jeZh",
+        "grant_type": "password",
+        "username": user,
+        "password": password
+      }).then(function (response) {
+        console.log("response");
+      }).catch(function (error) {
+        console.log("error");
+      });
     }
   }
 });
@@ -71333,15 +71346,13 @@ if (false) {
 "use strict";
 if (typeof axionService === "undefined") var axionService = __webpack_require__(176);
 
-var tree = axionService('summary-tree');
-var activity = axionService('');
+var passportService = axionService('');
 
 var vueServices = {
 	install: function install(Vue, options) {
 		Vue.mixin({
 			services: {
-				tree: tree,
-				activity: activity
+				passportService: passportService
 			}
 		});
 	}
@@ -81751,7 +81762,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
-        return {};
+        return {
+            loginData: { user: null, password: null }
+        };
     }
 });
 
@@ -81763,15 +81776,154 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "container" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-8 col-md-offset-2" }, [
+          _c("div", { staticClass: "panel panel-default" }, [
+            _c("div", { staticClass: "panel-heading" }, [
+              _vm._v(
+                "\n                            Login\n                        "
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "panel-body" }, [
+              _c("div", { staticClass: "form-group" }, [
+                _c(
+                  "label",
+                  {
+                    staticClass: "col-md-4 control-label",
+                    attrs: { for: "email" }
+                  },
+                  [_vm._v("E-Mail Address")]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-6" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.loginData.user,
+                        expression: "loginData.user"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      id: "email",
+                      name: "email",
+                      value: "",
+                      required: "required",
+                      autofocus: "autofocus",
+                      type: "email"
+                    },
+                    domProps: { value: _vm.loginData.user },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.loginData, "user", $event.target.value)
+                      }
+                    }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c(
+                  "label",
+                  {
+                    staticClass: "col-md-4 control-label",
+                    attrs: { for: "password" }
+                  },
+                  [_vm._v("Password")]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-6" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.loginData.password,
+                        expression: "loginData.password"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      id: "password",
+                      name: "password",
+                      required: "required",
+                      type: "password"
+                    },
+                    domProps: { value: _vm.loginData.password },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.loginData, "password", $event.target.value)
+                      }
+                    }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _vm._m(1),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("div", { staticClass: "col-md-8 col-md-offset-4" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary",
+                      attrs: { type: "submit" },
+                      on: {
+                        click: function($event) {
+                          _vm.login(_vm.loginData.user, _vm.loginData.password)
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        "\n                                        Login\n                                    "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    {
+                      staticClass: "btn btn-link",
+                      attrs: { href: "http://dev.josema-v2:705/password/reset" }
+                    },
+                    [
+                      _vm._v(
+                        "\n                                        Forgot Your Password?\n                                    "
+                      )
+                    ]
+                  )
+                ])
+              ])
+            ])
+          ])
+        ])
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("nav", { staticClass: "navbar navbar-default navbar-static-top" }, [
+    return _c(
+      "nav",
+      { staticClass: "navbar navbar-default navbar-static-top" },
+      [
         _c("div", { staticClass: "container" }, [
           _c("div", { staticClass: "navbar-header" }, [
             _c(
@@ -81843,115 +81995,21 @@ var staticRenderFns = [
             ]
           )
         ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "container" }, [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-md-8 col-md-offset-2" }, [
-            _c("div", { staticClass: "panel panel-default" }, [
-              _c("div", { staticClass: "panel-heading" }, [
-                _vm._v(
-                  "\n                            Login\n                        "
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "panel-body" }, [
-                _c("div", { staticClass: "form-group" }, [
-                  _c(
-                    "label",
-                    {
-                      staticClass: "col-md-4 control-label",
-                      attrs: { for: "email" }
-                    },
-                    [_vm._v("E-Mail Address")]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-6" }, [
-                    _c("input", {
-                      staticClass: "form-control",
-                      attrs: {
-                        id: "email",
-                        name: "email",
-                        value: "",
-                        required: "required",
-                        autofocus: "autofocus",
-                        type: "email"
-                      }
-                    })
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group" }, [
-                  _c(
-                    "label",
-                    {
-                      staticClass: "col-md-4 control-label",
-                      attrs: { for: "password" }
-                    },
-                    [_vm._v("Password")]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-md-6" }, [
-                    _c("input", {
-                      staticClass: "form-control",
-                      attrs: {
-                        id: "password",
-                        name: "password",
-                        required: "required",
-                        type: "password"
-                      }
-                    })
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group" }, [
-                  _c("div", { staticClass: "col-md-6 col-md-offset-4" }, [
-                    _c("div", { staticClass: "checkbox" }, [
-                      _c("label", [
-                        _c("input", {
-                          attrs: { name: "remember", type: "checkbox" }
-                        }),
-                        _vm._v(
-                          " \n                                                Remember Me\n                                        "
-                        )
-                      ])
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "form-group" }, [
-                  _c("div", { staticClass: "col-md-8 col-md-offset-4" }, [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-primary",
-                        attrs: { type: "submit" }
-                      },
-                      [
-                        _vm._v(
-                          "\n                                        Login\n                                    "
-                        )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "a",
-                      {
-                        staticClass: "btn btn-link",
-                        attrs: {
-                          href: "http://dev.josema-v2:705/password/reset"
-                        }
-                      },
-                      [
-                        _vm._v(
-                          "\n                                        Forgot Your Password?\n                                    "
-                        )
-                      ]
-                    )
-                  ])
-                ])
-              ])
-            ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("div", { staticClass: "col-md-6 col-md-offset-4" }, [
+        _c("div", { staticClass: "checkbox" }, [
+          _c("label", [
+            _c("input", { attrs: { name: "remember", type: "checkbox" } }),
+            _vm._v(
+              " \n                                                Remember Me\n                                        "
+            )
           ])
         ])
       ])

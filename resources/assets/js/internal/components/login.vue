@@ -40,13 +40,13 @@
                                 <div class="form-group">
                                     <label for="email" class="col-md-4 control-label">E-Mail Address</label> 
                                     <div class="col-md-6">
-                                        <input id="email" name="email" value="" required="required" autofocus="autofocus" class="form-control" type="email">
+                                        <input id="email" name="email" value="" required="required" autofocus="autofocus" class="form-control" type="email" v-model="loginData.user">
                                     </div>
                                 </div> 
                                 <div class="form-group">
                                     <label for="password" class="col-md-4 control-label">Password</label> 
                                     <div class="col-md-6">
-                                        <input id="password" name="password" required="required" class="form-control" type="password">
+                                        <input id="password" name="password" required="required" class="form-control" type="password" v-model="loginData.password">
                                     </div>
                                 </div> 
                                 <div class="form-group">
@@ -61,7 +61,7 @@
                                 </div> 
                                 <div class="form-group">
                                     <div class="col-md-8 col-md-offset-4">
-                                        <button type="submit" class="btn btn-primary">
+                                        <button type="submit" v-on:click="login(loginData.user,loginData.password)" class="btn btn-primary">
                                             Login
                                         </button> 
                                         <a href="http://dev.josema-v2:705/password/reset" class="btn btn-link">
@@ -81,6 +81,7 @@
     export default {
         data:function(){
             return {
+                loginData:{user:null,password:null}
             }
         }
     }

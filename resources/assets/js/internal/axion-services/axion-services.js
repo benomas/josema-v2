@@ -4,7 +4,7 @@ var axionService = function(servicePrefix,baseServiceUr){
 	this.config = {
 		//cross domain baseUrl
 		//baseURL            : 'http://dev.cime/api/',
-		baseURL            : '/api/',
+		baseURL            : '/',
 		headers            : {
 			'X-Requested-With' : 'XMLHttpRequest',
 			//'X-CSRF-TOKEN'     : window.Laravel.csrfToken,
