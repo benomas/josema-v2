@@ -7,7 +7,7 @@ var axionService = function(servicePrefix,baseServiceUr){
 		baseURL            : '/api/',
 		headers            : {
 			'X-Requested-With' : 'XMLHttpRequest',
-			'X-CSRF-TOKEN'     : window.Laravel.csrfToken,
+			//'X-CSRF-TOKEN'     : window.Laravel.csrfToken,
 			'Content-Type'     : 'application/json'
 		},
 		timeout            : 15000,

@@ -7,7 +7,7 @@ window._ = require('lodash');
  * code may be modified to fit the specific needs of your application.
  */
 
-window.$ = window.jQuery;// = require('jquery');
+window.$ = window.jQuery = require('jquery');
 
 require('bootstrap-sass');
 
@@ -28,7 +28,7 @@ window.Vue = require('vue');
 window.axios = require('axios');
 
 window.axios.defaults.headers.common = {
-	'X-CSRF-TOKEN'     : window.Laravel.csrfToken,
+	//'X-CSRF-TOKEN'     : window.Laravel.csrfToken,
 	'X-Requested-With' : 'XMLHttpRequest',
 	'Content-Type'     : 'application/json'
 };

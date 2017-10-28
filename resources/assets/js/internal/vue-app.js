@@ -32,6 +32,7 @@ Vue.use(VueCharts);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 var vueAppSpiner         = Vue.component("vue-spinner",require("./components/plugins/vue-spinner.vue"));
+var vueAppLogin          = Vue.component("vue-login",require("./components/login.vue"));
 var vueAppHeader         = Vue.component("vue-header",require("./components/header.vue"));
 var vueAppHelp           = Vue.component("vue-help",require("./components/help.vue"));
 var vueAppBreadcrumbs    = Vue.component("vue-breadcrumbs",require("./components/breadcrumbs.vue"));
