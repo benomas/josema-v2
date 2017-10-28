@@ -52,6 +52,10 @@ var customJs           = require("./custom-scripts");
 
 Vue.mixin({
   methods: {
+  	data:{
+  		access_token:null,
+		refresh_token:null
+  	},
     numericAnimator: (instance,propertys) => {
 		var final     = typeof propertys["final"]!=="undefined"?propertys["final"]:100;
 		var initial   = typeof propertys["initial"]!=="undefined"?propertys["initial"]:0;
@@ -76,6 +80,13 @@ Vue.mixin({
 	     }, time)
     },
     login:(user,password)=>{
+    	var this.access_token = JSON.parse(localStorage.getItem("access_token") || 'null');
+    	var this.refresh_token = JSON.parse(localStorage.getItem("refresh_token") || 'null');
+    	console.log([
+			this.access_token,
+			this.refresh_token
+    	]);
+    	_this=this;
     	axionService('oauth/token').post("",{
     			"client_id":"2",
     			"client_secret":"VO50RCnYqJUsUdGjRRc5oZwTVgvuCSRll4k5jeZh",
@@ -83,9 +94,15 @@ Vue.mixin({
 			    "username":user,   
 			    "password":password
 			}).then(function (response) {
-				console.log("response");
+				_this.access_token  =response.data.access_token;
+				_this.refresh_token =response.data.refresh_token;
+				localStorage.setItem("access_token", JSON.stringify(_this.access_token));
+				localStorage.setItem("refresh_token", JSON.stringify(_this.refresh_token));
+				console.log(response);
 			}).catch(function (error) {
-				console.log("error");
+				localStorage.setItem("access_token", null);
+				localStorage.setItem("refresh_token", null);
+				console.log(error);
 			});
     }
   }
